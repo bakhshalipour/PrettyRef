@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#! /usr/bin/env python3
 
 import sys
 import argparse
@@ -16,7 +16,7 @@ import string
 
 
 def read_bib_file(file_name):
-    with open(file_name) as bibtex_file:
+    with open(file_name, encoding='utf-8') as bibtex_file:
         parser = BibTexParser(common_strings=True)
         bib_database = bibtexparser.load(bibtex_file, parser=parser)
         return bib_database
