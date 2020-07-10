@@ -27,7 +27,7 @@ def write_bib_file(bib_database, file_name='output.bib'):
     writer = BibTexWriter()
     writer.indent = '    '     #Indent entries with 4 spaces instead of one
     writer.comma_first = True  #Place the comma at the beginning of the line
-    with open(file_name, 'w') as bibfile:
+    with open(file_name, 'w', encoding='utf-8') as bibfile:
         bibfile.write(writer.write(bib_database))
     
 
