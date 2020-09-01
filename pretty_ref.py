@@ -172,7 +172,7 @@ def make_venue_abbr(bib_database):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", help="set input bibtex file")
+    parser.add_argument("file", help="input bibtex file")
     parser.add_argument("-c", "--capitalize", help="capitalize titles", action="store_true")
     parser.add_argument("-e", "--et-al", help="use et al. instead of full list of authors", action="store_true")
     parser.add_argument("-t", "--threshold", help="use et al. for papers with >= THRESHOLD", type=int, default=3)
@@ -181,12 +181,12 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output", help="set output bibtex file")
     args = parser.parse_args()
 
-    if not args.input:
+    if not args.file:
         print('[Error] No input file is provided. See \'{} --help\''.format(sys.argv[0]), file=sys.stderr)
         exit(1)
 
     print('[Progress] Reading input file...')
-    bib_database = read_bib_file(args.input)
+    bib_database = read_bib_file(args.file)
     print('[Progress] Reading input file done')
 
     print('[Progress] Checking for duplicated bibitems...')
@@ -214,7 +214,7 @@ if __name__ == "__main__":
         print('[Progress] Abbreviating done...')
 
     print('[Progress] Producing output bibtex file...')
-    output_filename = args.output if args.output else 'pretty_' + args.input
+    output_filename = args.output if args.output else 'new_' + args.file
     write_bib_file(bib_database, output_filename)
     print('[Progress] Produced output bibtex file to {}'.format(output_filename))
 
