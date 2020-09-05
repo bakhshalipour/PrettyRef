@@ -18,11 +18,11 @@ This is a script that takes a bibtex file and produces a prettier one! It gets a
 ## How to use
 
 #### Help Message
-    $ ./PrettyRef.py --help
+    $ ./pretty_ref.py --help
 
 #### Examples
-    $ ./PrettyRef.py -i ref.bib -c -o new_ref.bib
-Takes `ref.bib` as input, capitalizes (`-c`) the title of papers, and writes the output to `new_ref.bib`
+    $ ./pretty_ref.py ref.bib -c -o output_ref.bib
+Takes `ref.bib` as input, capitalizes (`-c`) the title of papers, and writes the output to `output_ref.bib`
 
-    $ ./PrettyRef.py --input ref.bib --capitalize --et-al -t=3
-Capitalizes (`--capitalize`) the items, uses *et al.* (`--et-al`) for papers with more than 3 authors (`-t=3`), writes the output to a predefined `pretty_ref.bib` file
+    $ ./pretty_ref.py my_ref.bib --capitalize --et-al -t=3
+Capitalizes (`--capitalize`) the items, uses *et al.* (`--et-al`) for papers with more than 3 authors (`-t=3`), writes the output to `new_my_ref.bib` file
