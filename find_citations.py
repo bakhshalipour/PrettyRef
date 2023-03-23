@@ -38,12 +38,18 @@ def write_bib_file(bib_database, file_name='output.bib'):
 
 
 def remove_unused_citations(bib_database, used_citations):
-    for i, bibitem in enumerate(bib_database.entries):
-        # TODO: change this. add the ones that match instead of remove unmatches
-        if bibitem['ID'] not in used_citations:
-            del bib_database.entries[i]
+    db = BibDatabase()
+    total_entries = 0
+    used_entries = 0
+    for bibitem in bib_database.entries:
+        total_entries += 1
+        if bibitem['ID'] in used_citations:
+            used_entries +=1
+            db.entries.append(bibitem)
 
-    return bib_database
+    print('[Progress] Total bib entries in the original file: {}, the used ones: {}'.format(total_entries, used_entries))
+    return db
+
 
 
 def read_citations(file):
@@ -104,7 +110,7 @@ if __name__ == "__main__":
     print('[Progress] Removing unused citations done')
 
     print('[Progress] Producing output bibtex file...')
-    output_filename = args.output if args.output else 'new_' + args.bibfile
+    output_filename = args.output if args.output else 'new_' + os.path.basename(args.bibfile)
     write_bib_file(bib_database, output_filename)
     print('[Progress] Produced output bibtex file to {}'.format(output_filename))
 
